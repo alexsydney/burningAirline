@@ -220,3 +220,55 @@ Migrating to ChangeColumnType (20180206051222)
   [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/airplanes/new" for 127.0.0.1 at 2018-02-06 16:15:48 +1100
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AirplanesController#new as HTML
+  Rendering airplanes/new.html.erb
+  Rendered airplanes/_form.html.erb (31.1ms)
+  Rendered airplanes/new.html.erb (35.4ms)
+Completed 200 OK in 70ms (Views: 44.8ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/airplanes" for 127.0.0.1 at 2018-02-06 16:16:00 +1100
+Processing by AirplanesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nZJ46BmIP/ZPWol6T3enDZOcx32Ez9ytQtkRNPlK0RgBxcM6Jqbe9mnDLtpn9Oj4wc26QTEllXI2XyTC++JY2Q==", "airplane"=>{"name"=>"This airplane", "rows"=>"4", "columns"=>"6"}, "commit"=>"Create Airplane"}
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "airplanes" ("name", "rows", "columns", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "This airplane"], ["rows", 4], ["columns", 6], ["created_at", "2018-02-06 05:16:00.114718"], ["updated_at", "2018-02-06 05:16:00.114718"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/airplanes/1
+Completed 302 Found in 17ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/airplanes/1" for 127.0.0.1 at 2018-02-06 16:16:00 +1100
+Processing by AirplanesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAirplane Load (0.3ms)[0m  [1m[34mSELECT  "airplanes".* FROM "airplanes" WHERE "airplanes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering airplanes/show.html.erb
+  Rendered airplanes/show.html.erb (1.7ms)
+Completed 200 OK in 21ms (Views: 9.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/airplanes" for 127.0.0.1 at 2018-02-06 16:16:02 +1100
+Processing by AirplanesController#index as HTML
+  Rendering airplanes/index.html.erb
+  [1m[36mAirplane Load (0.3ms)[0m  [1m[34mSELECT "airplanes".* FROM "airplanes"[0m
+  Rendered airplanes/index.html.erb (3.0ms)
+Completed 200 OK in 16ms (Views: 11.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/flights" for 127.0.0.1 at 2018-02-06 16:16:11 +1100
+Processing by FlightsController#index as HTML
+  Rendering flights/index.html.erb
+  [1m[36mFlight Load (0.2ms)[0m  [1m[34mSELECT "flights".* FROM "flights"[0m
+  Rendered flights/index.html.erb (3.2ms)
+Completed 200 OK in 36ms (Views: 9.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2018-02-06 16:16:20 +1100
+Processing by ReservationsController#index as HTML
+  Rendering reservations/index.html.erb
+  [1m[36mReservation Load (0.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+  Rendered reservations/index.html.erb (3.3ms)
+Completed 200 OK in 19ms (Views: 10.6ms | ActiveRecord: 0.6ms)
+
+
