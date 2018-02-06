@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206043246) do
+ActiveRecord::Schema.define(version: 20180206051222) do
 
   create_table "airplanes", force: :cascade do |t|
     t.text "name"
     t.integer "rows"
-    t.text "columns"
+    t.integer "columns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
