@@ -4,10 +4,8 @@ one:
   name: MyText
   rows: 1
   columns: MyText
-  is_available: false
 
 two:
   name: MyText
   rows: 1
   columns: MyText
-  is_available: false

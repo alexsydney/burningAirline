@@ -5,11 +5,11 @@ one:
   origin: MyText
   destination: MyText
   date: MyText
-  plane_id: 1
+  airplane_id: 1
 
 two:
   flight_no: MyText
   origin: MyText
   destination: MyText
   date: MyText
-  plane_id: 1
+  airplane_id: 1
