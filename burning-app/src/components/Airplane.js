@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import SearchForm from './SearchForm';
+import AirplaneForm from './AirplaneForm';
 
 const SERVER_URL = 'http://localhost:3000/airplanes.json'
 
-function Gallery(props){
-  console.log(props);
-  return (
-    <div>
-      {
-         props.planes.map( s => <p key={ s.id }></p>)
-       }
-
-    </div>
-  );
-}
+// function Gallery(props){
+//   console.log(props);
+//   return (
+//     <div>
+//       {
+//          props.planes.map( s => <p key={ s.id }></p>)
+//        }
+//
+//     </div>
+//   );
+// }
 
 class Airplane extends Component {
 
@@ -32,7 +32,7 @@ class Airplane extends Component {
     console.log('savePlane: ', plane);
 
     // Rails:   Secret.create content: secret
-    axios.post(SERVER_URL, { content: plane }).then( results => {
+    axios.post(SERVER_URL, { name: plane }).then( results => {
       this.setState({
         planes: [results.data, ...this.state.planes ]
       });
@@ -51,7 +51,7 @@ class Airplane extends Component {
     // ...and save the response into our component state
     axios.get(SERVER_URL).then( results => this.setState({planes: results.data }) );
     setTimeout( fetchPlanes, 10000 );
-    console.log(this.state.planes[0])
+    // console.log(this.state.planes[0])
   };
 
   fetchPlanes();
@@ -62,14 +62,13 @@ class Airplane extends Component {
     return (
       <div>
         <h1>View planes</h1>
-        <SearchForm onSubmit={ this.savePlane }/>
+        <AirplaneForm onSubmit={ this.savePlane }/>
 
         <hr />
-        <Gallery planes={this.state.planes}/>
-        <hr />
         <ul>
+          <h3>View Existing Planes</h3>
           {this.state.planes.map(plane =>
-            <li key={plane.id}>{plane.name}, {plane.rows}, {plane.columns}</li>
+            <li key={plane.id}>Name:{plane.name}, Rows:{plane.rows}, Columns:{plane.columns}</li>
           )}
         </ul>
 
