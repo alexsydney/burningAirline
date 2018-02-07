@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import SearchForm from './SearchForm';
 
-const SERVER_URL = 'http://localhost:3000/airplanes.json'
+
+const SERVER_URL = 'http://localhost:3000/flights.json'
 
 // function Gallery(props){
 //   console.log(props);
@@ -18,43 +20,43 @@ const SERVER_URL = 'http://localhost:3000/airplanes.json'
 
 class Search extends Component {
 
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     planes: []
-  //   };
-  //
-  //   this.savePlane = this.savePlane.bind( this );
-  // }
-  //
-  // savePlane( plane ){
-  //   console.log('savePlane: ', plane);
-  //
-  //   // Rails:   Secret.create content: secret
-  //   axios.post(SERVER_URL, { name: plane }).then( results => {
-  //     this.setState({
-  //       planes: [results.data, ...this.state.planes ]
-  //     });
-  //   });
-  //
-  // }
+  constructor(){
+    super();
+    this.state = {
+      flights: []
+    };
+
+    this.saveFlight = this.saveFlight.bind( this );
+  }
+
+  saveFlight( flight ){
+    console.log('saveFlight: ', flight);
+
+    // Rails:   Secret.create content: secret
+    axios.post(SERVER_URL, { flight }).then( results => {
+      this.setState({
+        flights: [results.data, ...this.state.flights ]
+      });
+    });
+
+  }
 
 
-//   componentDidMount(){
-//
-//   // This code will ONLY run just before the component is about to be
-//   // mounted on the app, i.e. added to the DOM
-//
-//   const fetchPlanes = () => {
-//     // Make AJAX request to our Rails API endpoint
-//     // ...and save the response into our component state
-//     axios.get(SERVER_URL).then( results => this.setState({planes: results.data }) );
-//     setTimeout( fetchPlanes, 10000 );
-//     // console.log(this.state.planes[0])
-//   };
-//
-//   fetchPlanes();
-// }
+  componentDidMount(){
+
+  // This code will ONLY run just before the component is about to be
+  // mounted on the app, i.e. added to the DOM
+
+  const fetchFlights = () => {
+    // Make AJAX request to our Rails API endpoint
+    // ...and save the response into our component state
+    axios.get(SERVER_URL).then( results => this.setState({flights: results.data }) );
+    setTimeout( fetchFlights, 10000 );
+    // console.log(this.state.planes[0])
+  };
+
+  fetchFlights();
+}
 
 
   render() {
@@ -62,17 +64,15 @@ class Search extends Component {
       <div>
         <h1>Search Flights</h1>
 
-
-
-        {/* <SearchForm onSubmit={ this.savePlane }/>
+        <SearchForm onSubmit={ this.saveFlight }/>
 
         <hr />
         <ul>
-          <h3>View Existing Planes</h3>
-          {this.state.planes.map(plane =>
-            <li key={plane.id}>Name:{plane.name}, Rows:{plane.rows}, Columns:{plane.columns}</li>
+          <h3>View Available Flights</h3>
+          {this.state.flights.map(flight =>
+            <li key={flight.id}> Date:{flight.date}, Flight number:{flight.flight_no}, Origin:{flight.origin}, Destination:{flight.destination}, Plane:{flight.airplane_id}</li>
           )}
-        </ul> */}
+        </ul>
 
       </div>
     );
