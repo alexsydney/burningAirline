@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './BA.css';
 
 import AirplaneForm from './AirplaneForm';
 
 const SERVER_URL = 'http://localhost:3000/airplanes.json'
-
-// function Gallery(props){
-//   console.log(props);
-//   return (
-//     <div>
-//       {
-//          props.planes.map( s => <p key={ s.id }></p>)
-//        }
-//
-//     </div>
-//   );
-// }
 
 class Airplane extends Component {
 
@@ -50,27 +40,34 @@ class Airplane extends Component {
     // Make AJAX request to our Rails API endpoint
     // ...and save the response into our component state
     axios.get(SERVER_URL).then( results => this.setState({planes: results.data }) );
-    setTimeout( fetchPlanes, 10000 );
+    // setTimeout( fetchPlanes, 10000 );
     // console.log(this.state.planes[0])
   };
 
   fetchPlanes();
 }
 
-
   render() {
     return (
       <div>
-        <h1>View planes</h1>
+        <h1>Airplanes</h1>
+        <nav><Link to="/">Search Flights</Link></nav>
         <AirplaneForm onSubmit={ this.savePlane }/>
 
         <hr />
-        <ul>
-          <h3>View Existing Planes</h3>
-          {this.state.planes.map(plane =>
-            <li key={plane.id}>Name:{plane.name}, Rows:{plane.rows}, Columns:{plane.columns}</li>
-          )}
-        </ul>
+
+        <h3>Existing Planes</h3>
+        <table id="planesT">
+          <tbody>
+            {this.state.planes.map(plane =>
+              <tr key={plane.id}>
+                  <td><strong>Plane: </strong>{plane.name}</td>
+                  <td><strong>No. of Rows: </strong>{plane.rows}</td>
+                  <td><strong>No. of Columns: </strong>{plane.columns}</td>
+                </tr>
+              )}
+          </tbody>
+        </table>
 
       </div>
     );

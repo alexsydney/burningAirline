@@ -21,6 +21,9 @@
 .App-intro {
   font-size: large;
 }
+div{
+  text-align: center;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
@@ -35,7 +38,7 @@ nav, li{
   margin-right: 1%;
 }
 
-#planesT{
+table{
   margin-left: 25%;
 }
 td{

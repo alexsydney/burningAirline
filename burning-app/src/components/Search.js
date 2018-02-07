@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './BA.css';
 
 import SearchForm from './SearchForm';
 
@@ -82,17 +84,28 @@ class Search extends Component {
     return (
       <div>
         <h1>Search Flights</h1>
-
+        <nav>
+          <ul>
+            <li><Link to="/airplanes">Airplanes</Link></li>
+          </ul>
+        </nav>
 
         <SearchForm onSubmit= {this.listFlight}/>
         <hr />
 
-        <ul>
-          <h3>View Available Flights</h3>
-          {this.state.flights.map(flight =>
-            <li key={flight.id}> Date:{flight.date}, Flight number:{flight.flight_no}, Origin:{flight.origin}, Destination:{flight.destination}, Plane:{flight.airplane_id}</li>
-          )}
-        </ul>
+        <table>
+            <tbody>
+            {this.state.flights.map(flight =>
+              <tr key={flight.id}>
+                <td><strong>Date: </strong>{flight.date}</td>
+                <td><strong>Flight number: </strong>{flight.flight_no}</td>
+                <td><strong>Origin: </strong>{flight.origin}</td>
+                <td><strong>Destination: </strong>{flight.destination}</td>
+                <td><strong>Plane: </strong>{flight.airplane_id}</td>
+              </tr>
+            )}
+            </tbody>
+          </table>
 
       </div>
     );
