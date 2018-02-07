@@ -12,6 +12,17 @@ class FlightsController < ApplicationController
   def show
   end
 
+  # POST /search
+  def search
+    puts params
+
+    flights = Flight.where origin: params[:origin], destination: params[:destination]
+  
+    render json: { flights: flights }, status: :ok
+  end
+
+
+
   # GET /flights/new
   def new
     @flight = Flight.new

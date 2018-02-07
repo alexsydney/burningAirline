@@ -6,21 +6,27 @@ class SearchForm extends Component {
   constructor() {
     super();
 
-    this.state = { name: '' };
+    this.state = { origin: '', destination: '' };
 
     this._handleSubmit = this._handleSubmit.bind( this );
-    this._handleChange = this._handleChange.bind( this );
+    this._handleOriginChange = this._handleOriginChange.bind( this );
+    this._handleDestinationChange = this._handleDestinationChange.bind( this );
+
   }
 
   _handleSubmit( e ){
     e.preventDefault();
     // console.log( this.state.content );
-    this.props.onSubmit( this.state.name );
+    this.props.onSubmit( this.state.origin, this.state.destination );
     console.log(this.state.name)
   }
 
-  _handleChange( e ){
-    this.setState({ name: e.target.value });
+  _handleOriginChange( e ){
+    this.setState({ origin: e.target.value });
+    console.log(e.target.value);
+  }
+  _handleDestinationChange( e ){
+    this.setState({ destination: e.target.value });
     console.log(e.target.value);
   }
 
@@ -30,14 +36,14 @@ class SearchForm extends Component {
       <form onSubmit={ this._handleSubmit }>
         <br />
 
-        From: <input type="text" onChange={ this._handleChange }/>
-        To: <input type="text" onChange={ this._handleChange }/><br />
+        From: <input type="text"  onChange={ this._handleOriginChange }/>
+        To: <input type="text"  onChange={ this._handleDestinationChange }/><br />
 
         <input type="submit" value="Search Flights" />
       </form>
     );
   }
-}
+ }
 
 SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired

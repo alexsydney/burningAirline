@@ -4,7 +4,8 @@ import axios from 'axios';
 import SearchForm from './SearchForm';
 
 
-const SERVER_URL = 'http://localhost:3000/flights.json'
+const SERVER_URL = 'http://localhost:3000/flights.json';
+const SEARCH_URL = 'http://localhost:3000/search.json';
 
 // function Gallery(props){
 //   console.log(props);
@@ -26,20 +27,38 @@ class Search extends Component {
       flights: []
     };
 
-    this.saveFlight = this.saveFlight.bind( this );
+    // this.saveFlight = this.saveFlight.bind( this );
+    this.listFlight = this.listFlight.bind(this);
   }
 
-  saveFlight( flight ){
-    console.log('saveFlight: ', flight);
+  listFlight( origin,destination ){
 
-    // Rails:   Secret.create content: secret
-    axios.post(SERVER_URL, { flight }).then( results => {
-      this.setState({
-        flights: [results.data, ...this.state.flights ]
+
+      axios.post(SEARCH_URL, {  origin, destination }).then( results => {
+
+        console.log('results', results);
+        this.setState({
+          flights: results.data.flights
+        });
+        console.log(results.data);
+
       });
-    });
 
-  }
+
+
+    }
+
+
+
+  // saveFlight( flight ){
+  //   console.log('saveFlight: ', flight);
+  //
+  //   // Rails:   Secret.create content: secret
+  //   axios.post(SERVER_URL, { flight }).then( results => {
+
+  //   });
+  //
+  // }
 
 
   componentDidMount(){
@@ -51,7 +70,7 @@ class Search extends Component {
     // Make AJAX request to our Rails API endpoint
     // ...and save the response into our component state
     axios.get(SERVER_URL).then( results => this.setState({flights: results.data }) );
-    setTimeout( fetchFlights, 10000 );
+    // setTimeout( fetchFlights, 10000 );
     // console.log(this.state.planes[0])
   };
 
@@ -64,9 +83,10 @@ class Search extends Component {
       <div>
         <h1>Search Flights</h1>
 
-        <SearchForm onSubmit={ this.saveFlight }/>
 
+        <SearchForm onSubmit= {this.listFlight}/>
         <hr />
+
         <ul>
           <h3>View Available Flights</h3>
           {this.state.flights.map(flight =>
