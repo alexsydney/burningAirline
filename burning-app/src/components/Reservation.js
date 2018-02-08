@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 
 import axios from 'axios';
+import './BA.css';
 
 import { Link } from 'react-router-dom';
 
@@ -36,12 +37,23 @@ class Reservation extends Component {
 
          <h4> Seats Reservation </h4>
          <Link to="/">Back to Home page</Link>
-         <hr/>
-         { this.state.seats.map( seat =>
-           <li key={seat.id}>flight_Id:{seat.flight_id}, User_id: {seat.user_id},
-           Seat No: {seat.seat} </li>
 
-         )}
+         <hr/>
+         <table>
+           <tbody>
+             {this.state.seats.map(seat =>
+               <tr key={seat.id}>
+                   <td><strong>Flight ID: </strong>{seat.flight_id}</td>
+                   <td><strong>User: </strong>{seat.user_id}</td>
+                   <td><strong>Seat No: </strong>{seat.seat}</td>
+                 </tr>
+               )}
+           </tbody>
+         </table>
+
+
+
+
       </div>
     );
   }
