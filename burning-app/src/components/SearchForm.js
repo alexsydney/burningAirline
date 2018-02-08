@@ -37,8 +37,8 @@ class SearchForm extends Component {
       <form onSubmit={ this._handleSubmit }>
         <br />
 
-        From: <input type="text"  onChange={ this._handleOriginChange }/>
-        To: <input type="text"  onChange={ this._handleDestinationChange }/><br />
+        From: <input type="text" style={{textTransform:'uppercase'}} placeholder="Origin" onChange={ this._handleOriginChange }/>
+        To: <input type="text" style={{textTransform:'uppercase'}} placeholder="Destination" onChange={ this._handleDestinationChange }/><br />
 
         <input type="submit" value="Search Flights" />
       </form>
