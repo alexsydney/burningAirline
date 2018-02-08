@@ -86,6 +86,7 @@ class Search extends Component {
         <h1>Search Flights</h1>
         <nav>
           <ul>
+           <li><Link to="/reservation/#id">Reservation</Link></li>
             <li><Link to="/airplanes">Airplanes</Link></li>
           </ul>
         </nav>
