@@ -12,6 +12,7 @@ const Routes = (
     <Route exact path="/" component={ Search }/>
     <Route exact path="/airplanes" component={ Airplane }/>
     <Route exact path="/reservation" component={ Reservation }  />
+    <Route path="/reservation/:id" component={ Reservation } />
 
 
   </div>

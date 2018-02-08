@@ -81,12 +81,14 @@ class Search extends Component {
 
 
   render() {
+
+    // let planeID = 1
+
     return (
       <div>
         <h1>Search Flights</h1>
         <nav>
           <ul>
-           <li><Link to="/reservation/#id">Reservation</Link></li>
             <li><Link to="/airplanes">Airplanes</Link></li>
           </ul>
         </nav>
@@ -102,7 +104,7 @@ class Search extends Component {
                 <td><strong>Flight number: </strong>{flight.flight_no}</td>
                 <td><strong>Origin: </strong>{flight.origin}</td>
                 <td><strong>Destination: </strong>{flight.destination}</td>
-                <td><strong>Plane: </strong>{flight.airplane_id}</td>
+                <Link to={`/reservation/${flight.airplane_id}`}><td><strong>Plane: </strong>{flight.airplane_id}</td></Link>
               </tr>
             )}
             </tbody>
